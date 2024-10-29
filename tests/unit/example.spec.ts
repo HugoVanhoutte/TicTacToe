@@ -1,12 +1,15 @@
-import { shallowMount } from '@vue/test-utils';
-import HelloWorld from '@/components/HelloWorld.vue';
+import { mount } from '@vue/test-utils';
+import App from '../../src/App.vue';
+import fn = jest.fn;
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message';
-    const wrapper = shallowMount(HelloWorld, {
-      props: { msg },
-    });
-    expect(wrapper.text()).toMatch(msg);
-  });
+test('App.vue renders exactly 9 boxes', () => {
+  const wrapper = mount(App);
+  expect(wrapper.findAll('.box').length).toBe(9);
+});
+
+test('box should trigger setCross() when clicked', () => {
+  const wrapper = mount(App);
+  const setCross = fn();
+  wrapper.find('.box').trigger('click');
+  expect(setCross).toHaveBeenCalled();
 });
