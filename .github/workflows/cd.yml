@@ -30,7 +30,7 @@ jobs:
       with:
         host: ${{ secrets.SFTP_HOST }}
         username: ${{ secrets.SFTP_USER }}
-        password: ${{ secrets.SFTP_PASSWORD }}
+        key: ${{ secrets.SSH_KEY }}
         port: 22
         source: "dist/*"
         target: "/var/www/tictactoe.hugo-vanhoutte.dev/"
