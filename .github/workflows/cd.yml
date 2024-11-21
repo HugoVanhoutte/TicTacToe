@@ -1,0 +1,43 @@
+name: cd-tictactoe
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v3
+
+    - name: set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'
+
+    - name: install front dependencies
+      run: npm install
+
+    - name: build frontend
+      run: npm run build
+      
+    - name: SFTP-Deploy-Action
+      uses: milanmk/actions-file-deployer@master
+      with:
+        remote-protocol: sftp
+    
+        # Credentials for SFTP access to server using GitHub secrets
+        remote-host: ${{ secrets.FTP_HOST }}
+        remote-user: ${{ secrets.FTP_USER }}
+        remote-password: ${{ secrets.FTP_PASSWORD }}
+    
+        # Path for specific folder on server for files deployment
+        remote-path: /var/www/tictactoe.hugo-vanhoutte.dev
+    
+        # Port for SFTP access to server
+        remote-port: 22
+      
