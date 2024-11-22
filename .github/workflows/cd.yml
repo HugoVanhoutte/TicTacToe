@@ -43,9 +43,7 @@ jobs:
         port: 22
         script: |
           # Move contents of dist to target directory
-          mv /var/www/shifumi.hugo-vanhoutte.dev/dist/* /var/www/shifumi.hugo-vanhoutte.dev/
+          mv /var/www/tictactoe.hugo-vanhoutte.dev/dist/* /var/www/tictactoe.hugo-vanhoutte.dev/
           # Remove the empty dist folder
-          rmdir /var/www/shifumi.hugo-vanhoutte.dev/dist
-        source: "dist/*"
-        target: "/var/www/tictactoe.hugo-vanhoutte.dev/"
+          sudo rm -rf /var/www/tictactoe.hugo-vanhoutte.dev/dist/
       
