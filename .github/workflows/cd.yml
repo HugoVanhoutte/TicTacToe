@@ -33,6 +33,8 @@ jobs:
         username: ${{ secrets.FTP_USER }}
         key: ${{ secrets.SSH_KEY }}
         port: 22
+        source: "dist/*"
+        target: "/var/www/tictactoe.hugo-vanhoutte.dev/"
 
     - name: Execute SSH commands to move content
       uses: appleboy/ssh-action@v0.1.5
